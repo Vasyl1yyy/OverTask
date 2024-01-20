@@ -4,8 +4,10 @@ const input = todo.querySelector('.input-text');
 const list = todo.querySelector('.list');
 
 btn.addEventListener('click', (event) => {
-  if (input.value !== '') {
-    addTodoList(input.value);
+  const text = input.value;
+  if (text !== '') {
+    addTodoList(text);
+    saveTodoList(text);
     input.value = '';
   }
 });
@@ -25,7 +27,6 @@ const addTodoList = (text) => {
     text +
     '</p><button class="list-btn">X</button></div>';
   list.innerHTML += todoList;
-  localStorage.setItem('text', text);
 };
 
 document.addEventListener('click', (event) => {
@@ -36,15 +37,29 @@ document.addEventListener('click', (event) => {
     event.target.classList.toggle('del');
     for (let i = 0; i < todolist.length; i++) {
       if (todobtn[i].classList.length == 2) {
-        todolist[i].remove();
+        todolist[i].parentNode.removeChild(todolist[i]);
+        delete todoLists[i];
+        localStorage.setItem('todoList', JSON.stringify(todoLists));
       }
     }
   }
 });
 
-// Збереження даних в Local Storage
+let todoLists = {
+  add: 0,
+};
 
-// Отримання даних з Local Storage
-const text = localStorage.getItem('text');
+const saveTodoList = (text) => {
+  todoLists[todoLists['add']] = text;
+  todoLists['add'] += 1;
+  localStorage.setItem('todoList', JSON.stringify(todoLists));
+};
 
-console.log(text);
+if (localStorage.getItem('todoList') !== null) {
+  todoLists = JSON.parse(localStorage.getItem('todoList'));
+  for (let i = 0; i < todoLists['add']; i++) {
+    if (todoLists[i]) {
+      addTodoList(todoLists[i]);
+    }
+  }
+}
