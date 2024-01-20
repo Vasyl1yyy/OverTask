@@ -38,7 +38,13 @@ document.addEventListener('click', (event) => {
     for (let i = 0; i < todolist.length; i++) {
       if (todobtn[i].classList.length == 2) {
         todolist[i].parentNode.removeChild(todolist[i]);
-        delete todoLists[i];
+        console.log(todolist[i].querySelector('p').innerHTML);
+        for (let j = 0; j < todoLists.add; j++) {
+          if (todoLists[j] == todolist[i].querySelector('p').innerHTML) {
+            console.log(todoLists[j]);
+            delete todoLists[j];
+          }
+        }
         localStorage.setItem('todoList', JSON.stringify(todoLists));
       }
     }
