@@ -23,9 +23,9 @@ document.addEventListener('keydown', (event) => {
 
 const addTodoList = (text) => {
   const todoList =
-    '<div class="todo-list"><p>' +
+    '<div class="todo-list col-4"><p>' +
     text +
-    '</p><button class="list-btn">X</button></div>';
+    '</p><button class="list-btn">Delete</button></div>';
   list.innerHTML += todoList;
 };
 
