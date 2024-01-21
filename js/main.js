@@ -16,6 +16,7 @@ document.addEventListener('keydown', (event) => {
   if (event.code === 'Enter') {
     if (input.value !== '') {
       addTodoList(input.value);
+      saveTodoList(input.value);
       input.value = '';
     }
   }
@@ -23,7 +24,7 @@ document.addEventListener('keydown', (event) => {
 
 const addTodoList = (text) => {
   const todoList =
-    '<div class="todo-list col-4"><p>' +
+    '<div class="todo-list"><p>' +
     text +
     '</p><button class="list-btn">Delete</button></div>';
   list.innerHTML += todoList;
