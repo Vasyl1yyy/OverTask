@@ -15,6 +15,12 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/main.min.css" />
     <script defer src="js/main.js"></script>
     <script
@@ -23,16 +29,38 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <title>todo list</title>
+    <script
+      defer
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      defer
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <link rel="icon" href="img/icon.png" type="image/x-icon" />
+    <title>OverTask</title>
   </head>
   <body>
-    <div class="todo container">
+    <header class="header">
+      <div class="container">
+        <a class="logo">
+          <img src="img/logo.png" alt="logo" width="50px" />
+          <div class="logo-text">OVERTASK</div>
+        </a>
+      </div>
+    </header>
+    <main class="todo container">
+      <button class="add">
+        <ion-icon class="icon-add" name="add-outline"></ion-icon>
+      </button>
       <div class="input">
         <input class="input-text" type="text" />
         <input class="input-tag" type="text" />
         <button class="input-btn">Add</button>
       </div>
-      <div class="list"></div>
-    </div>
+      <ul class="list"></ul>
+    </main>
   </body>
 </html>

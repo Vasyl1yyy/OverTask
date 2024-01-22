@@ -29,11 +29,11 @@ document.addEventListener('keydown', (event) => {
 
 const addTodoList = (text, tag) => {
   const todoList =
-    '<div class="todo-list"><h2>' +
+    '<li class="todo-list"><h2>' +
     text +
     '</h2><p class="tag">#' +
     tag +
-    '</p><button class="list-btn">Delete</button></div>';
+    '</p><button class="list-btn">Delete</button></li>';
   list.innerHTML += todoList;
 };
 

@@ -5,10 +5,52 @@
   border: none
   box-shadow: none
 
+a
+  text-decoration: none
+
 body
   background-color: #1d1d1d
   font-family: "Lato", sans-serif
   font-weight: 400
+  padding-top: 50px
+  scrollbar-width: thin
+  scrollbar-color: #630eab #1d1d1d
+
+body::-webkit-scrollbar 
+  width: 5px
+
+body::-webkit-scrollbar-track
+  background:#1d1d1d
+
+body::-webkit-scrollbar-thumb
+  background-color: #630eab
+
+.header
+  background-color: #630eab
+  position: fixed
+  width: 100%
+  z-index: 2
+  top: 0
+  .logo 
+    font-family: "Oswald", sans-serif
+    color: #f5f5f5
+    display: flex
+    align-items: center
+    .logo-text
+      font-size: 32px
+      margin-left: 5px
+
+.add 
+  display: flex
+  position: fixed
+  bottom: 40px
+  right: 40px
+  border-radius: 50%
+  padding: 8px
+  background-color: #9d07d1 
+  .icon-add
+    font-size: 30px
+    color: #f5f5f5
 
 .input
   margin-top: 10px
@@ -32,7 +74,7 @@ body
     color: #f5f5f5
     border-top-left-radius: 20px
     border-bottom-left-radius: 20px
-    border-right: 1px solid #9d07d1 
+    border-right: 2px solid #9d07d1 
     min-width: 150px
     width: 350px
   .input-tag
