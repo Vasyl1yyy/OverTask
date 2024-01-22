@@ -18,13 +18,10 @@ body {
   justify-content: center;
   align-items: center;
 }
-.input .input-text {
+.input input {
   background-color: #252525;
   border: none;
-  color: #f5f5f5;
-  border-radius: 20px;
   padding: 5px 15px;
-  min-width: 250px;
   font-size: 16px;
 }
 .input .input-btn {
@@ -36,10 +33,22 @@ body {
   font-size: 16px;
   margin-left: -25px;
 }
+.input .input-text {
+  color: #f5f5f5;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-right: 1px solid #9d07d1;
+  min-width: 150px;
+  width: 350px;
+}
+.input .input-tag {
+  color: #9afa05;
+  min-width: 100px;
+  width: 150px;
+}
 
-.input-text:focus-visible {
+input:focus-visible {
   outline: none;
-  border: 2px solid #630eab;
 }
 
 .list {
@@ -49,16 +58,17 @@ body {
   margin-top: 150px;
 }
 .list .todo-list {
-  border: 2px solid #630eab;
   border-radius: 20px;
   background-color: #252525;
   color: #f5f5f5;
-  text-align: center;
   font-size: 22px;
-  height: 200px;
   padding: 0;
   position: relative;
   overflow: hidden;
+  padding-bottom: 50px;
+}
+.list .todo-list h2 {
+  text-align: center;
 }
 .list .todo-list .list-btn {
   font-size: 16px;
@@ -70,6 +80,15 @@ body {
   color: #f5f5f5;
   font-weight: 700;
   padding: 5px;
+}
+.list .todo-list .tag {
+  color: #9afa05;
+  background-color: rgba(152, 250, 5, 0.3019607843);
+  padding: 2px 5px;
+  font-size: 12px;
+  margin-left: 20px;
+  display: inline-block;
+  border-radius: 10px;
 }
 
 @media (max-width: 1000px) {
