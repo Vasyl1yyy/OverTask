@@ -1,8 +1,8 @@
 const todo = document.querySelector('.todo');
-const btn = todo.querySelector('.input-btn');
-const input = todo.querySelector('.input-text');
-const list = todo.querySelector('.list');
-const inputTag = todo.querySelector('.input-tag');
+const btn = document.querySelector('.input-btn');
+const input = document.querySelector('.input-text');
+const list = document.querySelector('.list');
+const inputTag = document.querySelector('.input-tag');
 
 btn.addEventListener('click', (event) => {
   const text = input.value;
@@ -10,6 +10,7 @@ btn.addEventListener('click', (event) => {
     addTodoList(text, inputTag.value);
     saveTodoList(text, inputTag.value);
 
+    blockAddTask.style.display = 'none';
     input.value = '';
     inputTag.value = '';
   }
@@ -21,6 +22,7 @@ document.addEventListener('keydown', (event) => {
       addTodoList(input.value, inputTag.value);
       saveTodoList(input.value, inputTag.value);
 
+      blockAddTask.style.display = 'none';
       input.value = '';
       inputTag.value = '';
     }
@@ -29,11 +31,11 @@ document.addEventListener('keydown', (event) => {
 
 const addTodoList = (text, tag) => {
   const todoList =
-    '<div class="todo-list"><h2>' +
+    '<li class="todo-list"><h2>' +
     text +
     '</h2><p class="tag">#' +
     tag +
-    '</p><button class="list-btn">Delete</button></div>';
+    '</p><button class="list-btn">Delete</button></li>';
   list.innerHTML += todoList;
 };
 
@@ -81,3 +83,15 @@ if (localStorage.getItem('todoList') !== null) {
 const text = {
   0: [1, 2],
 };
+
+const btnAdd = document.querySelector('.add');
+const blockAddTask = document.querySelector('.todo-add');
+const btnClose = document.querySelector('.close');
+
+btnAdd.addEventListener('click', (event) => {
+  blockAddTask.style.display = 'flex';
+});
+
+btnClose.addEventListener('click', (event) => {
+  blockAddTask.style.display = 'none';
+});
