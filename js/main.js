@@ -3,12 +3,13 @@ const btn = document.querySelector('.input-btn');
 const input = document.querySelector('.input-text');
 const list = document.querySelector('.list');
 const inputTag = document.querySelector('.input-tag');
+const date = document.querySelector('.date');
 
 btn.addEventListener('click', (event) => {
   const text = input.value;
   if (text !== '' && inputTag.value !== '') {
-    addTodoList(text, inputTag.value);
-    saveTodoList(text, inputTag.value);
+    addTodoList(text, inputTag.value, addDate(date.value));
+    saveTodoList(text, inputTag.value, addDate(date.value));
 
     blockAddTask.style.display = 'none';
     input.value = '';
@@ -29,13 +30,15 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-const addTodoList = (text, tag) => {
+const addTodoList = (text, tag, date) => {
   const todoList =
     '<li class="todo-list"><h2>' +
     text +
-    '</h2><p class="tag">#' +
+    '</h2><div class="tag-date"><p class="tag">' +
     tag +
-    '</p><button class="list-btn">Delete</button></li>';
+    '</p><p class="dates">' +
+    date +
+    '</p></div><button class="list-btn">Delete</button></li>';
   list.innerHTML += todoList;
 };
 
@@ -65,8 +68,8 @@ let todoLists = {
   add: 0,
 };
 
-const saveTodoList = (text, tag) => {
-  todoLists[todoLists['add']] = [text, tag];
+const saveTodoList = (text, tag, date) => {
+  todoLists[todoLists['add']] = [text, tag, date];
   todoLists['add'] += 1;
   localStorage.setItem('todoList', JSON.stringify(todoLists));
 };
@@ -75,13 +78,14 @@ if (localStorage.getItem('todoList') !== null) {
   todoLists = JSON.parse(localStorage.getItem('todoList'));
   for (let i = 0; i < todoLists['add']; i++) {
     if (todoLists[i]) {
-      addTodoList(todoLists[i][0], todoLists[i][1]);
+      addTodoList(todoLists[i][0], todoLists[i][1], todoLists[i][2]);
     }
   }
 }
 
-const text = {
-  0: [1, 2],
+const addDate = (date) => {
+  const a = date.split('-');
+  return a[2] + '.' + a[1] + ' ' + a[0];
 };
 
 const btnAdd = document.querySelector('.add');
