@@ -12,7 +12,6 @@ body
   background-color: #1d1d1d
   font-family: "Lato", sans-serif
   font-weight: 400
-  padding-top: 50px
   scrollbar-width: thin
   scrollbar-color: #630eab #1d1d1d
 
@@ -25,20 +24,118 @@ body::-webkit-scrollbar-track
 body::-webkit-scrollbar-thumb
   background-color: #630eab
 
+ul
+  margin: 0
+  text-decoration: none
+  padding: 0
+  list-style-type: none
+
+
 .header
   background-color: #630eab
-  position: fixed
-  width: 100%
-  z-index: 2
-  top: 0
+  border-radius: 50px
+  padding: 5px
+  margin: 0 10px
+  margin-top: 10px
+  .header-navbar 
+    display: flex 
+    justify-content: space-between
+    align-items: center
+    .navbar 
+      font-size: 16px
+      gap: 25px
+      font-weight: 700
+      .nav a
+        color: #f5f5f5
+    .btn-sing
+      font-size: 16px
+    .sing-in
+      color: #1d1d1d
+      font-weight: 700
+      padding: 5px 10px
+      border-radius: 20px
+      background-color: #f5f5f5
+    .sing-up
+      color: #f5f5f5
+      background-color: #00000000
+      font-weight: 700
+      margin-left: 10px
+  .header-navbar 
+    display: flex 
+    justify-content: space-between
+    align-items: center 
   .logo 
     font-family: "Oswald", sans-serif
     color: #f5f5f5
     display: flex
     align-items: center
     .logo-text
-      font-size: 32px
+      font-size: 25px
       margin-left: 5px
+
+section
+  padding: 0
+  background-color: #252525
+  border-radius: 20px
+  position: relative
+  margin-top: 80px
+  h2 
+    position: absolute
+    color: #c0c0c0
+    font-size: 20px
+    top: -25px
+    left: 20px
+
+
+.statistics
+  padding: 50px
+  .stats
+    display: flex
+    justify-content: space-around
+    align-items: center
+    .round
+      position: relative
+      .number-name
+        color: #f5f5f5
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%,-50%)
+        text-align: center
+        p
+          margin: 0
+          font-size: 24px
+          font-weight: 900
+        h3
+          margin: 0
+          font-size: 14px
+          font-weight: 700
+        
+    svg 
+      position: relative
+      width: 150px
+      height: 150px
+      transform: rotate(-90deg)
+      circle 
+        width: 100%
+        height: 100%
+        fill: none
+        stroke: #191919
+        stroke-width: 10
+        stroke-linecap: round
+        transform: translate(5px, 5px)
+        &:nth-child(2) 
+          stroke-dasharray: 440
+      .color-all
+        stroke-dashoffset: calc(440 - (440 * 50) / 100)
+        stroke: #9d07d1
+      .color-habit
+        stroke: #9afa05
+        stroke-dashoffset: calc(440 - (440 * 80) / 100)
+      .color-task
+        stroke: #fdeb0c
+        stroke-dashoffset: calc(440 - (440 * 60) / 100)
+        
 
 .add 
   display: flex
