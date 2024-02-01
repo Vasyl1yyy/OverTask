@@ -1,0 +1,132 @@
+
+.header 
+  position: fixed
+  z-index: 2
+  bottom: 0
+  width: 100%
+  margin: 0
+  border-radius: 0
+  border-top-left-radius: 20px
+  border-top-right-radius: 20px
+  .logo, .btn-sing, .navbars
+    display: none !important
+  .media
+    display: block
+    width: 100%
+  .navbar-media
+    display: grid
+    justify-content: space-between
+    align-items: center
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+    .nav-media
+      display: flex
+      align-items: center 
+      cursor: pointer
+      margin: 0 auto
+      .icon
+        color: #f5f5f5
+        font-size: 25px
+      .add-block
+        width: 50px
+
+section
+  margin-top: 25px
+  h2 
+    font-size: 16px
+    top: -20px
+
+.statistics
+  padding: 10px
+  .stats
+    .round
+      .number-name
+        p
+          margin: 0
+          font-size: 16px
+          font-weight: 900
+        h3
+          margin: 0
+          font-size: 12px
+          font-weight: 700
+        
+    svg 
+      width: 70px
+      height: 70px
+      circle 
+        cx: 30
+        cy: 30
+        r: 30
+        stroke-width: 5
+        &:nth-child(2) 
+          stroke-dasharray: 188
+      .color-all
+        stroke-dashoffset: calc(188 - (188 * 50) / 100)
+      .color-habit
+        stroke-dashoffset: calc(188 - (188 * 80) / 100)
+      .color-task
+        stroke-dashoffset: calc(188 - (188 * 60) / 100)
+
+.task
+  padding: 10px
+  margin-bottom: 80px
+  .filter
+    display: none
+  .set-filter
+    display: block
+    text-align: end
+    ion-icon
+      color: #4b4b4b 
+      cursor: pointer
+      font-size: 20px
+  .list
+    margin-top: 5px
+    padding: 8px  
+    .list-task
+      display: flex
+      flex-direction: column
+      position: relative
+      padding: 5px
+      padding-bottom: 40px
+      .difficulty-color
+        margin: 0
+        position: absolute
+        left: 0
+        top: 0
+        border-radius: 0
+        width: 30px
+        height: 30px
+        border-end-end-radius: 15px
+      .text-task
+        margin: 0
+        margin-bottom: 15px
+      .date-tag
+        width: 100%
+        padding: 0 10px
+        .date-text
+          margin: 0
+      .delete
+        position: absolute
+        bottom: 5px
+        right: 0
+
+
+.habit 
+  display: none
+  margin-bottom: 80px
+  .list-habit
+    flex-direction: column
+    li
+      width: 100%
+      button
+        width: 100% !important
+  .add-habit-btn
+    font-size: 100px !important
+
+.add
+  right: auto
+  left: 50%
+  bottom: 18px
+  z-index: 3
+  transform: translate(-50%)
+  .icon-add
+    font-size: 35px

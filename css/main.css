@@ -14,20 +14,12 @@ body {
   background-color: #1d1d1d;
   font-family: "Lato", sans-serif;
   font-weight: 400;
+}
+
+html {
+  overflow: auto;
   scrollbar-width: thin;
-  scrollbar-color: #630eab #1d1d1d;
-}
-
-body::-webkit-scrollbar {
-  width: 5px;
-}
-
-body::-webkit-scrollbar-track {
-  background: #1d1d1d;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: #630eab;
+  scrollbar-color: #630eab #252525;
 }
 
 ul {
@@ -35,6 +27,10 @@ ul {
   text-decoration: none;
   padding: 0;
   list-style-type: none;
+}
+
+.media {
+  display: none;
 }
 
 .header {
@@ -49,13 +45,19 @@ ul {
   justify-content: space-between;
   align-items: center;
 }
-.header .header-navbar .navbar {
+.header .header-navbar .navbars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
   gap: 25px;
   font-weight: 700;
 }
-.header .header-navbar .navbar .nav a {
+.header .header-navbar .navbars .nav a {
   color: #f5f5f5;
+}
+.header .header-navbar .navbars .icon {
+  display: none;
 }
 .header .header-navbar .btn-sing {
   font-size: 16px;
@@ -72,6 +74,9 @@ ul {
   background-color: rgba(0, 0, 0, 0);
   font-weight: 700;
   margin-left: 10px;
+}
+.header .header-navbar .icon-sing {
+  display: none;
 }
 .header .header-navbar {
   display: flex;
@@ -176,7 +181,6 @@ section h2 {
   background-color: #9d07d1;
   color: #f5f5f5;
   font-size: 22px;
-  font-weight: 900px;
   width: 150px;
   height: 150px;
   border-radius: 20px;
@@ -189,6 +193,109 @@ section h2 {
 .habit .list-habit .add-habit button .add-habit-btn {
   color: #4b4b4b;
   font-size: 120px;
+}
+
+.task {
+  padding: 20px;
+  margin-bottom: 150px;
+}
+.task .set-filter {
+  display: none;
+}
+.task .filter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.task .filter select {
+  color: #f5f5f5;
+  background-color: #1d1d1d;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+.task .list {
+  background-color: #1d1d1d;
+  padding: 15px;
+  margin-top: 40px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.task .list .list-task {
+  background-color: #252525;
+  display: grid;
+  grid-template-columns: 50px 1fr 400px 50px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  color: #f5f5f5;
+  overflow: hidden;
+}
+.task .list .list-task .date-tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task .list .list-task .difficulty-color {
+  width: 20px;
+  height: 40px;
+  border-radius: 10px;
+}
+.task .list .list-task .hard {
+  background-color: #9afa05;
+}
+.task .list .list-task .text-task {
+  font-size: 18px;
+  margin: 0;
+  margin-left: 10px;
+}
+.task .list .list-task .tag-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.task .list .list-task .tag-text {
+  font-size: 14px;
+  margin: 0;
+  padding: 2px 10px;
+  color: #9afa05;
+  background-color: rgba(152, 250, 5, 0.231372549);
+  border-radius: 20px;
+  text-align: center;
+}
+.task .list .list-task .date-text {
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
+  margin-right: 50px;
+}
+.task .list .list-task .delete {
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.task .list .list-task .delete .delete-icon {
+  color: #f0330c;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.task .list .add-task {
+  display: flex;
+  justify-content: center;
+}
+.task .list .add-task .add-task-btn {
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.task .list .add-task .add-task-btn .add-task-icon {
+  font-size: 50px;
+  color: #4b4b4b;
 }
 
 .add {
@@ -281,99 +388,4 @@ section h2 {
 
 input:focus-visible {
   outline: none;
-}
-
-.list {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
-  margin-top: 150px;
-  padding: 0;
-}
-.list .todo-list {
-  border-radius: 20px;
-  background-color: #252525;
-  color: #f5f5f5;
-  font-size: 22px;
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-  padding-bottom: 50px;
-  min-width: 300px;
-}
-.list .todo-list .tag-date {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-.list .todo-list .tag-date .dates {
-  font-size: 14px;
-}
-.list .todo-list h2 {
-  text-align: center;
-}
-.list .todo-list .list-btn {
-  font-size: 16px;
-  display: block;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  background-color: #ed3d39;
-  color: #f5f5f5;
-  font-weight: 700;
-  padding: 5px;
-}
-.list .todo-list .tag {
-  color: #9afa05;
-  background-color: rgba(152, 250, 5, 0.3019607843);
-  padding: 2px 5px;
-  font-size: 12px;
-  display: block;
-  border-radius: 10px;
-}
-
-@media (max-width: 1000px) {
-  .list {
-    grid-template-columns: 1fr 1fr;
-    margin-top: 20px;
-  }
-}
-@media (max-width: 700px) {
-  .list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
-    gap: 10px;
-  }
-  .header {
-    bottom: 0;
-    top: auto;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-  }
-  .header .logo-text {
-    display: none;
-  }
-  .header .logo {
-    margin: 5px 0;
-  }
-  .header .logo img {
-    width: 40px;
-  }
-  .add {
-    right: auto;
-    left: 50%;
-    bottom: -10px;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-  }
-  .todo-add {
-    padding: 20px;
-  }
-  .todo-add .input {
-    padding: 20px;
-    width: 300px;
-  }
 }/*# sourceMappingURL=main.css.map */

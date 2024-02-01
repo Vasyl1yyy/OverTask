@@ -1,101 +1,15 @@
-const todo = document.querySelector('.todo');
-const btn = document.querySelector('.input-btn');
-const input = document.querySelector('.input-text');
-const list = document.querySelector('.list');
-const inputTag = document.querySelector('.input-tag');
-const date = document.querySelector('.date');
+const habitBlock = document.querySelector('.habit');
+const taskBlock = document.querySelector('.task');
 
-btn.addEventListener('click', (event) => {
-  const text = input.value;
-  if (text !== '' && inputTag.value !== '') {
-    addTodoList(text, inputTag.value, addDate(date.value));
-    saveTodoList(text, inputTag.value, addDate(date.value));
+const habitBtn = document.querySelector('#habit-btn');
+const taskBtn = document.querySelector('#task-btn');
 
-    blockAddTask.style.display = 'none';
-    input.value = '';
-    inputTag.value = '';
-  }
+habitBtn.addEventListener('click', () => {
+  taskBlock.style.display = 'none';
+  habitBlock.style.display = 'block';
 });
 
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'Enter') {
-    if (input.value !== '' && inputTag.value !== '') {
-      addTodoList(input.value, inputTag.value);
-      saveTodoList(input.value, inputTag.value);
-
-      blockAddTask.style.display = 'none';
-      input.value = '';
-      inputTag.value = '';
-    }
-  }
-});
-
-const addTodoList = (text, tag, date) => {
-  const todoList =
-    '<li class="todo-list"><h2>' +
-    text +
-    '</h2><div class="tag-date"><p class="tag">' +
-    tag +
-    '</p><p class="dates">' +
-    date +
-    '</p></div><button class="list-btn">Delete</button></li>';
-  list.innerHTML += todoList;
-};
-
-document.addEventListener('click', (event) => {
-  const todobtn = list.querySelectorAll('.list-btn');
-  const todolist = list.querySelectorAll('.todo-list');
-
-  if (event.target.classList == 'list-btn') {
-    event.target.classList.toggle('del');
-    for (let i = 0; i < todolist.length; i++) {
-      if (todobtn[i].classList.length == 2) {
-        todolist[i].parentNode.removeChild(todolist[i]);
-        for (let j = 0; j < todoLists.add; j++) {
-          if (todoLists[j]) {
-            if (todoLists[j][0] == todolist[i].querySelector('h2').innerHTML) {
-              delete todoLists[j];
-            }
-          }
-        }
-        localStorage.setItem('todoList', JSON.stringify(todoLists));
-      }
-    }
-  }
-});
-
-let todoLists = {
-  add: 0,
-};
-
-const saveTodoList = (text, tag, date) => {
-  todoLists[todoLists['add']] = [text, tag, date];
-  todoLists['add'] += 1;
-  localStorage.setItem('todoList', JSON.stringify(todoLists));
-};
-
-if (localStorage.getItem('todoList') !== null) {
-  todoLists = JSON.parse(localStorage.getItem('todoList'));
-  for (let i = 0; i < todoLists['add']; i++) {
-    if (todoLists[i]) {
-      addTodoList(todoLists[i][0], todoLists[i][1], todoLists[i][2]);
-    }
-  }
-}
-
-const addDate = (date) => {
-  const a = date.split('-');
-  return a[2] + '.' + a[1] + ' ' + a[0];
-};
-
-const btnAdd = document.querySelector('.add');
-const blockAddTask = document.querySelector('.todo-add');
-const btnClose = document.querySelector('.close');
-
-btnAdd.addEventListener('click', (event) => {
-  blockAddTask.style.display = 'flex';
-});
-
-btnClose.addEventListener('click', (event) => {
-  blockAddTask.style.display = 'none';
+taskBtn.addEventListener('click', () => {
+  taskBlock.style.display = 'block';
+  habitBlock.style.display = 'none';
 });
