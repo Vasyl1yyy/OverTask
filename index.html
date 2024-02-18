@@ -44,24 +44,64 @@
     <title>OverTask</title>
   </head>
   <body>
+    <div class="habit-add">
+      <div class="habit-add-input">
+        <button class="habit-add-close">
+          <ion-icon name="close"></ion-icon>
+        </button>
+        <div class="block-habit-name">
+          <div class="title-habit">
+            <p class="title-p">Title</p>
+            <input class="input-text" type="text" />
+          </div>
+          <div class="select-habit">
+            <p class="title-p">Color</p>
+            <select class="color-select">
+              <option value="0">Blue</option>
+              <option value="1">Red</option>
+              <option value="2">Yellow</option>
+            </select>
+          </div>
+        </div>
+        <button class="input-btn">Add</button>
+      </div>
+    </div>
+    <div class="add-block">
+      <div class="add-block-habit">
+        <h2 class="add-block-text">Add Habit</h2>
+      </div>
+      <div class="add-block-task">
+        <h2 class="add-block-text">Add Task</h2>
+      </div>
+    </div>
     <div class="todo-add">
       <div class="input">
-        <button class="close">
+        <button class="todo-add-close">
           <ion-icon name="close"></ion-icon>
         </button>
         <div class="title-task">
           <p class="title-p">Title Task</p>
-          <input class="input-text" type="text" />
+          <input class="input-task-text" type="text" />
         </div>
-        <div class="title-tag">
-          <p class="title-p">Title Tag</p>
-          <input class="input-tag" type="text" />
+        <div class="todo-add-block">
+          <div class="dif-task">
+            <p class="title-p">Difficulty</p>
+            <select class="dif-select">
+              <option value="hard">Hard</option>
+              <option value="normal">Normal</option>
+              <option value="easy">Easy</option>
+            </select>
+          </div>
+          <div class="title-tag">
+            <p class="title-p">Title Tag</p>
+            <input class="input-tag" type="text" />
+          </div>
+          <div class="title-date">
+            <p class="title-p">Date</p>
+            <input type="date" class="date" />
+          </div>
         </div>
-        <div class="title-date">
-          <p class="title-p">Date</p>
-          <input type="date" class="date" />
-        </div>
-        <button class="input-btn">Add</button>
+        <button class="input-task-btn">Add</button>
       </div>
     </div>
     <header class="header">
@@ -145,7 +185,7 @@
         <ul class="list-habit">
           <li><button class="btn-add-habit">Sport</button></li>
           <li class="add-habit">
-            <button>
+            <button class="add-habit-block">
               <ion-icon class="add-habit-btn" name="add-outline"></ion-icon>
             </button>
           </li>
@@ -174,7 +214,7 @@
           <ion-icon name="settings"></ion-icon>
         </div>
         <ul class="list">
-          <li class="list-task">
+          <!-- <li class="list-task">
             <div class="difficulty-color hard"></div>
             <h3 class="text-task">Go to work</h3>
             <div class="date-tag">
@@ -186,9 +226,9 @@
             <button class="delete">
               <ion-icon name="trash" class="delete-icon"></ion-icon>
             </button>
-          </li>
+          </li> -->
           <li class="add-task">
-            <button class="add-task-btn">
+            <button onclick="addTaskBlock()" class="add-task-btn">
               <ion-icon class="add-task-icon" name="add-outline"></ion-icon>
             </button>
           </li>
