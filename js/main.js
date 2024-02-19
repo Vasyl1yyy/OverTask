@@ -78,9 +78,17 @@ btnTaskAdd.addEventListener('click', () => {
   }
 });
 
+const doneDel = () => {
+  event.target.classList.toggle('done-del');
+};
+
+const taskDelete = (el) => {
+  el.parentNode.remove();
+};
+
 const addTaskList = (text, tag, date, color) => {
   const taskList = `<li class="list-task">
-  <div onclick="style.opacity = '1'" class="done"></div>
+  <div onclick="doneDel()" class="done"></div>
   <div class="difficulty-color ${color}"></div>
   <h3 class="text-task">${text}</h3>
   <div class="date-tag">
@@ -89,7 +97,7 @@ const addTaskList = (text, tag, date, color) => {
     </div>
     <h4 class="date-text">${date}</h4>
   </div>
-  <button class="delete">
+  <button onclick="taskDelete(this)" class="delete">
     <ion-icon name="trash" class="delete-icon"></ion-icon>
   </button>
 </li>`;
