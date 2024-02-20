@@ -127,17 +127,18 @@ section
         stroke-width: 10
         stroke-linecap: round
         transform: translate(5px, 5px)
+        transition: all .5s
         &:nth-child(2) 
           stroke-dasharray: 440
       .color-all
-        stroke-dashoffset: calc(440 - (440 * 50) / 100)
+        stroke-dashoffset: calc(440 - (440 * 0) / 100)
         stroke: #9d07d1
       .color-habit
         stroke: #9afa05
         stroke-dashoffset: calc(440 - (440 * 80) / 100)
       .color-task
         stroke: #fdeb0c
-        stroke-dashoffset: calc(440 - (440 * 60) / 100)
+        stroke-dashoffset: calc(440 - (440 * 0) / 100)
 
 .habit
   padding: 20px

@@ -152,12 +152,13 @@ section h2 {
   stroke-width: 10;
   stroke-linecap: round;
   transform: translate(5px, 5px);
+  transition: all 0.5s;
 }
 .statistics .stats svg circle:nth-child(2) {
   stroke-dasharray: 440;
 }
 .statistics .stats svg .color-all {
-  stroke-dashoffset: 220;
+  stroke-dashoffset: 440;
   stroke: #9d07d1;
 }
 .statistics .stats svg .color-habit {
@@ -166,7 +167,7 @@ section h2 {
 }
 .statistics .stats svg .color-task {
   stroke: #fdeb0c;
-  stroke-dashoffset: 176;
+  stroke-dashoffset: 440;
 }
 
 .habit {

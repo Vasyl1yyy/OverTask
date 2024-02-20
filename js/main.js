@@ -75,15 +75,18 @@ btnTaskAdd.addEventListener('click', () => {
     inputTaskTag.value = '';
     inputTaskDate.value = '';
     selectTask.value = 'hard';
+    stats();
   }
 });
 
 const doneDel = () => {
   event.target.classList.toggle('done-del');
+  filterTask(list.children);
 };
 
 const taskDelete = (el) => {
   el.parentNode.remove();
+  filterTask(list.children);
 };
 
 const addTaskList = (text, tag, date, color) => {
@@ -103,3 +106,54 @@ const addTaskList = (text, tag, date, color) => {
 </li>`;
   list.innerHTML += taskList;
 };
+
+const colorTask = document.querySelector('.color-task');
+const statsTaskPer = document.querySelector('.stats-task-per');
+
+const colorAll = document.querySelector('.color-all');
+const statsAllPer = document.querySelector('.stats-all-per');
+let statsTask = 0;
+
+const stats = () => {
+  let perTask = 0;
+  if (list.children.length - 1 !== 0) {
+    perTask = (statsTask / (list.children.length - 1)) * 100;
+  }
+  colorTask.style.strokeDashoffset = 440 - (440 * perTask) / 100;
+  statsTaskPer.innerText = Math.round(perTask) + '%';
+
+  let perAll = 0;
+  perAll = (perTask + 80) / 2;
+  colorAll.style.strokeDashoffset = 440 - (440 * perAll) / 100;
+  statsAllPer.innerText = Math.round(perAll) + '%';
+};
+
+const filterTask = (lists) => {
+  let filterList = [];
+
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].children[0].classList == 'add-task-btn')
+      filterList.push(lists[i]);
+  }
+
+  statsTask = 0;
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].children[0].classList.length == 2) {
+      filterList.push(lists[i]);
+      statsTask++;
+    }
+  }
+
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].children[0].classList == 'done') filterList.push(lists[i]);
+  }
+
+  list.innerHTML = '';
+
+  for (let i = 0; i < filterList.length; i++) {
+    list.innerHTML += filterList[i].outerHTML;
+  }
+  stats();
+};
+
+filterTask(list.children);
