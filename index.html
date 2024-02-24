@@ -57,9 +57,9 @@
           <div class="select-habit">
             <p class="title-p">Color</p>
             <select class="color-select">
-              <option value="0">Blue</option>
-              <option value="1">Red</option>
-              <option value="2">Yellow</option>
+              <option value="green">Green</option>
+              <option value="purple">Purple</option>
+              <option value="blue">Blue</option>
             </select>
           </div>
         </div>
@@ -161,7 +161,7 @@
                 <circle class="color-habit" cx="70" cy="70" r="70"></circle>
               </svg>
               <div class="number-name">
-                <p>80%</p>
+                <p class="stats-habit-per">80%</p>
                 <h3>Habits</h3>
               </div>
             </div>
@@ -183,11 +183,11 @@
       <section class="habit container" id="habit">
         <h2>Habits</h2>
         <ul class="list-habit">
-          <li><button class="btn-add-habit">Sport</button></li>
           <li class="add-habit">
-            <button class="add-habit-block">
+            <button onclick="addHabitBlock()" class="add-habit-block">
               <ion-icon class="add-habit-btn" name="add-outline"></ion-icon>
             </button>
+            <div></div>
           </li>
         </ul>
       </section>
