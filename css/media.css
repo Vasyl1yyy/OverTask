@@ -138,7 +138,7 @@ section h2 {
   margin-bottom: 80px;
 }
 .habit .list-habit {
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 .habit .list-habit li {
   width: 100%;
@@ -159,4 +159,37 @@ section h2 {
 }
 .add .icon-add {
   font-size: 35px;
+}
+
+.habit-add-input {
+  width: 300px !important;
+  padding: 20px !important;
+}
+.habit-add-input .block-habit-name {
+  flex-direction: column;
+  align-items: flex-start !important;
+}
+.habit-add-input .block-habit-name .title-habit {
+  width: 100%;
+}
+.habit-add-input .block-habit-name .select-habit {
+  width: 100%;
+  margin-top: 10px;
+}
+.habit-add-input .block-habit-name .select-habit .color-select {
+  width: 100%;
+}
+
+.input {
+  width: 300px !important;
+  padding: 20px !important;
+  gap: 10px !important;
+}
+.input .todo-add-block {
+  flex-direction: column;
+  align-items: flex-start !important;
+  gap: 10px;
+}
+.input .todo-add-block .dif-task, .input .todo-add-block .title-tag, .input .todo-add-block .title-date, .input .todo-add-block .dif-select, .input .todo-add-block input {
+  width: 100%;
 }/*# sourceMappingURL=media.css.map */

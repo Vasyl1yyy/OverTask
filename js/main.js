@@ -44,6 +44,8 @@ const statsHabitPer = document.querySelector('.stats-habit-per');
 const colorAll = document.querySelector('.color-all');
 const statsAllPer = document.querySelector('.stats-all-per');
 
+const today = new Date();
+
 let statsTask = 0;
 let statsHabit = 0;
 
@@ -63,9 +65,9 @@ const animeBlockClose = (el, el2) => {
   }, 150);
 };
 
-const addTaskList = (text, tag, date, color) => {
+const addTaskList = (text, tag, date, color, done) => {
   const taskList = `<li class="list-task">
-  <div onclick="doneDel()" class="done"></div>
+  <div onclick="doneDel()" class="${done}"></div>
   <div class="difficulty-color ${color}"></div>
   <h3 class="text-task">${text}</h3>
   <div class="date-tag">
@@ -81,8 +83,8 @@ const addTaskList = (text, tag, date, color) => {
   list.innerHTML += taskList;
 };
 
-const addHabitList = (text, color) => {
-  const habitList = `<li class="lists-habits">
+const addHabitList = (text, color, day) => {
+  const habitList = `<li class="lists-habits ${day}">
   <ion-icon onclick="Delete(this)" name="trash" class="delete"></ion-icon>
   <button onclick="doneHabit()" class="btn-add-habit ${color}">${text}
   </button>
@@ -91,23 +93,27 @@ const addHabitList = (text, color) => {
 };
 
 const stats = () => {
+  let radius = 440;
+  if (window.innerWidth <= 767) {
+    radius = 188;
+  }
   let perTask = 0;
   if (list.children.length - 1 !== 0) {
     perTask = (statsTask / (list.children.length - 1)) * 100;
   }
-  colorTask.style.strokeDashoffset = 440 - (440 * perTask) / 100;
+  colorTask.style.strokeDashoffset = radius - (radius * perTask) / 100;
   statsTaskPer.innerText = Math.round(perTask) + '%';
 
   let perHabit = 0;
   if (listHabit.children.length - 1 !== 0) {
     perHabit = (statsHabit / (listHabit.children.length - 1)) * 100;
   }
-  colorHabit.style.strokeDashoffset = 440 - (440 * perHabit) / 100;
+  colorHabit.style.strokeDashoffset = radius - (radius * perHabit) / 100;
   statsHabitPer.innerText = Math.round(perHabit) + '%';
 
   let perAll = 0;
   perAll = (perTask + perHabit) / 2;
-  colorAll.style.strokeDashoffset = 440 - (440 * perAll) / 100;
+  colorAll.style.strokeDashoffset = radius - (radius * perAll) / 100;
   statsAllPer.innerText = Math.round(perAll) + '%';
 };
 
@@ -177,18 +183,65 @@ const addTaskBlock = () => {
 
 const doneDel = () => {
   event.target.classList.toggle('done-del');
+  saveTaskList();
   filterTask(list.children);
 };
 
 const doneHabit = () => {
   event.target.classList.toggle('btn-done-habit');
+  saveHabitList();
   filterHabit(listHabit.children);
 };
 
 const Delete = (el) => {
   el.parentNode.remove();
+  saveTaskList();
+  saveHabitList();
   filterTask(list.children);
+  filterHabit(listHabit.children);
 };
+
+let taskLists = {
+  list: '',
+};
+
+let habitLists = {
+  list: '',
+};
+
+const saveTaskList = () => {
+  taskLists['list'] = list.innerHTML;
+  localStorage.setItem('taskLists', JSON.stringify(taskLists));
+};
+
+const saveHabitList = () => {
+  habitLists['list'] = listHabit.innerHTML;
+  localStorage.setItem('habitLists', JSON.stringify(habitLists));
+};
+
+const date = (date) => {
+  return date.split('-').reverse().join('.');
+};
+
+const doneHabitdate = () => {
+  for (let i = 1; i < listHabit.children.length; i++) {
+    if (today.getDate() != listHabit.children[i].classList[1]) {
+      listHabit.children[i].classList.value = 'lists-habits ' + today.getDate();
+      listHabit.children[i].children[1].classList.remove('btn-done-habit');
+      filterHabit(listHabit.children);
+    }
+  }
+};
+
+if (localStorage.getItem('taskLists') !== null) {
+  taskLists = JSON.parse(localStorage.getItem('taskLists'));
+  list.innerHTML = taskLists['list'];
+}
+
+if (localStorage.getItem('habitLists') !== null) {
+  habitLists = JSON.parse(localStorage.getItem('habitLists'));
+  listHabit.innerHTML = habitLists['list'];
+}
 
 filterHabit(listHabit.children);
 filterTask(list.children);
@@ -226,7 +279,7 @@ habitAddClose.addEventListener('click', () => {
 });
 
 btnTaskAdd.addEventListener('click', () => {
-  if (inputTaskText.value !== '') {
+  if (inputTaskText.value !== '' && inputTaskTag.value !== '') {
     todoInput.style.transform = 'scale(0)';
     setTimeout(() => {
       todoAdd.style.display = 'none';
@@ -234,9 +287,11 @@ btnTaskAdd.addEventListener('click', () => {
     addTaskList(
       inputTaskText.value,
       inputTaskTag.value,
-      inputTaskDate.value,
-      selectTask.value
+      date(inputTaskDate.value),
+      selectTask.value,
+      'done'
     );
+    saveTaskList();
     inputTaskText.value = '';
     inputTaskTag.value = '';
     inputTaskDate.value = '';
@@ -252,9 +307,12 @@ btnHabitAdd.addEventListener('click', () => {
     setTimeout(() => {
       habitAdd.style.display = 'none';
     }, 150);
-    addHabitList(inputHabitText.value, selectHabit.value);
+    addHabitList(inputHabitText.value, selectHabit.value, today.getDate());
+    saveHabitList();
     inputHabitText.value = '';
     selectHabit.value = 'green';
     stats();
   }
 });
+
+doneHabitdate();

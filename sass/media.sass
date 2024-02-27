@@ -114,7 +114,7 @@ section
   display: none
   margin-bottom: 80px
   .list-habit
-    flex-direction: column
+    flex-direction: column-reverse
     li
       width: 100%
       button
@@ -130,3 +130,28 @@ section
   transform: translate(-50%)
   .icon-add
     font-size: 35px
+
+.habit-add-input
+  width: 300px !important
+  padding: 20px !important
+  .block-habit-name
+    flex-direction: column
+    align-items: flex-start !important
+    .title-habit
+      width: 100%
+    .select-habit
+      width: 100%
+      margin-top: 10px
+      .color-select
+        width: 100%
+
+.input 
+  width: 300px !important
+  padding: 20px !important
+  gap: 10px !important
+  .todo-add-block
+    flex-direction: column
+    align-items: flex-start !important
+    gap: 10px
+    .dif-task, .title-tag, .title-date, .dif-select, input
+      width: 100%
