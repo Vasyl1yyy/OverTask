@@ -12,34 +12,288 @@ body
   background-color: #1d1d1d
   font-family: "Lato", sans-serif
   font-weight: 400
-  padding-top: 50px
-  scrollbar-width: thin
-  scrollbar-color: #630eab #1d1d1d
 
-body::-webkit-scrollbar 
+::-webkit-scrollbar 
   width: 5px
 
-body::-webkit-scrollbar-track
-  background:#1d1d1d
-
-body::-webkit-scrollbar-thumb
+::-webkit-scrollbar-thumb 
   background-color: #630eab
+  border-radius: 10px
+
+
+::-webkit-scrollbar-track 
+  background-color: #252525
+
+ul
+  margin: 0
+  text-decoration: none
+  padding: 0
+  list-style-type: none
+
+.media
+  display: none
 
 .header
   background-color: #630eab
-  position: fixed
-  width: 100%
-  z-index: 2
-  top: 0
+  border-radius: 50px
+  padding: 5px
+  margin: 0 10px
+  margin-top: 10px
+  .header-navbar 
+    display: flex 
+    justify-content: space-between
+    align-items: center
+    .navbars
+      display: flex
+      align-items: center
+      justify-content: center 
+      font-size: 16px
+      gap: 25px
+      font-weight: 700
+      .nav a
+        color: #f5f5f5
+      .icon
+        display: none
+    .btn-sing
+      font-size: 16px
+    .sing-in
+      color: #1d1d1d
+      font-weight: 700
+      padding: 5px 10px
+      border-radius: 20px
+      background-color: #f5f5f5
+    .sing-up
+      color: #f5f5f5
+      background-color: #00000000
+      font-weight: 700
+      margin-left: 10px
+    .icon-sing
+      display: none
+  .header-navbar 
+    display: flex 
+    justify-content: space-between
+    align-items: center 
   .logo 
     font-family: "Oswald", sans-serif
     color: #f5f5f5
     display: flex
     align-items: center
     .logo-text
-      font-size: 32px
+      font-size: 25px
       margin-left: 5px
 
+section
+  padding: 0
+  background-color: #252525
+  border-radius: 20px
+  position: relative
+  margin-top: 80px
+  h2 
+    position: absolute
+    color: #c0c0c0
+    font-size: 20px
+    top: -25px
+    left: 20px
+
+
+.statistics
+  padding: 20px 0
+  .stats
+    display: flex
+    justify-content: space-around
+    align-items: center
+    .round
+      position: relative
+      .number-name
+        color: #f5f5f5
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%,-50%)
+        text-align: center
+        p
+          margin: 0
+          font-size: 24px
+          font-weight: 900
+        h3
+          margin: 0
+          font-size: 14px
+          font-weight: 700
+        
+    svg 
+      position: relative
+      width: 150px
+      height: 150px
+      transform: rotate(-90deg)
+      circle 
+        width: 100%
+        height: 100%
+        fill: none
+        stroke: #1d1d1d
+        stroke-width: 10
+        stroke-linecap: round
+        transform: translate(5px, 5px)
+        transition: all .5s
+        &:nth-child(2) 
+          stroke-dasharray: 440
+      .color-all
+        stroke-dashoffset: calc(440 - (440 * 0) / 100)
+        stroke: #9d07d1
+      .color-habit
+        stroke: #9afa05
+        stroke-dashoffset: calc(440 - (440 * 0) / 100)
+      .color-task
+        stroke: #fdeb0c
+        stroke-dashoffset: calc(440 - (440 * 0) / 100)
+
+.habit
+  padding: 20px
+  .list-habit
+    display: flex
+    align-items: center
+    flex-direction: row-reverse
+    justify-content: flex-end
+    margin-left: 0
+    gap: 20px
+    .lists-habits
+      position: relative
+    li .btn-add-habit
+      color: #f5f5f5
+      font-size: 22px
+      width: 150px
+      height: 150px
+      border-radius: 20px
+      transition: all .2s
+    .purple
+      background-color: #9d07d1
+    .green
+      background-color: #05bb05
+    .blue
+      background-color: #007bdf
+    .add-habit button
+      background-color: #00000000
+      width: 150px
+      height: 150px
+      .add-habit-btn
+        color: #4b4b4b
+        font-size: 120px
+    .btn-done-habit
+      background-color: #1d1d1d !important
+      color: #4b4b4b !important
+    .delete
+      position: absolute
+      top: 8px
+      right: 8px
+      font-size: 16px
+      color: #f5f5f5
+      z-index: 3
+
+.task
+  padding: 20px
+  margin-bottom: 150px
+  .set-filter
+    display: none
+  .filter
+    display: flex
+    justify-content: space-around
+    align-items: center
+    select
+      color: #f5f5f5
+      background-color: #1d1d1d
+      font-size: 18px
+      padding: 10px 20px
+      border-radius: 20px
+  .list
+    background-color: #1d1d1d
+    padding: 15px
+    margin-top: 40px
+    border-radius: 20px
+    display: flex
+    flex-direction: column-reverse
+    gap: 15px
+    .list-task
+      position: relative
+      background-color: #252525
+      display: grid
+      grid-template-columns: 50px 1fr 400px 50px
+      justify-content: space-between
+      align-items: center
+      border-radius: 20px
+      color: #f5f5f5
+      overflow: hidden
+      .date-tag
+        display: flex
+        justify-content: space-between
+        align-items: center
+      .difficulty-color
+        width: 20px
+        height: 40px 
+        border-radius: 10px
+      .hard
+        background-color: #f0330c
+      .normal
+        background-color: #fdeb0c
+      .easy
+        background-color: #9afa05
+      .text-task
+        font-size: 18px
+        margin: 0
+        margin-left: 10px
+      .tag-block
+        display: flex
+        align-items: center
+        justify-content: center
+      .tag-text
+        font-size: 14px
+        margin: 0
+        padding: 2px 10px
+        color: #9afa05
+        background-color: #98fa053b
+        border-radius: 20px
+        text-align: center
+      .date-text
+        margin: 0
+        font-size: 16px
+        text-align: center
+        margin-right: 50px 
+      .delete
+        background-color: #00000000
+        display: flex
+        justify-content: center
+        align-items: center
+        z-index: 3
+        .delete-icon
+          color: #f0330c
+          font-size: 20px
+          margin-right: 10px
+    .add-task
+      display: flex
+      justify-content: center
+      .add-task-btn
+        background-color: #00000000
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 100%
+        .add-task-icon
+          font-size: 50px
+          color: #4b4b4b
+    .done
+      position: absolute
+      width: 100%
+      height: 100%
+      background-color: #1a1a1ad7
+      z-index: 2
+      top: 0
+      opacity: 0
+    .done-del
+      position: absolute
+      width: 100%
+      height: 100%
+      background-color: #1a1a1ad7
+      z-index: 2
+      top: 0
+      opacity: 1
 .add 
   display: flex
   position: fixed
@@ -58,12 +312,15 @@ body::-webkit-scrollbar-thumb
   align-items: center
   position: fixed
   z-index: 10
-  background-color: #13131381
+  background-color: #131313ce
   width: 100%
   height: 100%
   top:0
+  opacity: 1
+  transition: opacity .2s
   .input
     padding: 50px
+    padding-bottom: 30px
     background: #1d1d1d
     border-radius: 20px
     display: flex
@@ -71,8 +328,23 @@ body::-webkit-scrollbar-thumb
     justify-content: center
     gap: 20px
     position: relative
-    width: 450px
-    .close
+    overflow: hidden
+    width: 700px
+    transform: scale(0)
+    transition: all .2s
+    .todo-add-block
+      display: flex
+      justify-content: space-between
+      align-items: center
+      .dif-select
+        background-color: #252525
+        border: none
+        padding: 5px 15px
+        font-size: 16px
+        border-radius: 20px
+        color: #f5f5f5
+        outline: none
+    .todo-add-close
       position: absolute
       top: 5px
       right: 5px
@@ -93,7 +365,7 @@ body::-webkit-scrollbar-thumb
       padding: 5px 15px
       font-size: 16px
       border-radius: 20px
-    .input-btn
+    .input-task-btn
       background-color: #9d07d1
       color: #f5f5f5
       font-weight: 700
@@ -102,7 +374,7 @@ body::-webkit-scrollbar-thumb
       font-size: 16px
       width: 100px
       margin-top: 10px
-    .input-text 
+    .input-task-text 
       color: #f5f5f5
       width: 100%
     .input-tag
@@ -116,85 +388,109 @@ body::-webkit-scrollbar-thumb
       width: 100%
       opacity: 0
   
-
-input:focus-visible
-  outline: none
-
-.list 
-  display: grid
-  grid-template-columns: 1fr 1fr 1fr
-  gap: 40px
-  margin-top: 150px
-  padding: 0
-  .todo-list
-    border-radius: 20px
-    background-color:  #252525
+.add-block
+  display: none
+  align-items: center
+  position: fixed
+  z-index: 10
+  background-color: #131313ce
+  width: 100%
+  height: 100%
+  top:0
+  opacity: 0
+  transition: opacity .3s
+  .add-block-habit
+    height: 100%
+    width: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+    border: 1px solid #363636ce
+  .add-block-task
+    height: 100%
+    width: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+    transition: all .5s
+    border: 1px solid #363636ce
+  .add-block-text
     color: #f5f5f5
-    font-size: 22px
-    padding: 0
+    font-size: 30px
+  .add-block-habit:hover
+    background-color: #363636ce
+  .add-block-task:hover
+    background-color: #363636ce
+
+.habit-add
+  display: none
+  justify-content: center
+  align-items: center
+  position: fixed
+  z-index: 10
+  background-color: #131313ce
+  width: 100%
+  height: 100%
+  top:0
+  opacity: 0
+  transition: all .3s
+  .habit-add-input
+    padding: 50px
+    padding-bottom: 30px
+    background: #1d1d1d
+    border-radius: 20px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    gap: 20px
     position: relative
-    overflow: hidden
-    padding-bottom: 50px
-    min-width: 300px
-    .tag-date
+    width: 450px
+    transform: scale(0)
+    transition: all .2s
+    .block-habit-name
       display: flex
       justify-content: space-between
       align-items: center
-      padding: 0 20px
-      .dates
-        font-size: 14px
-    h2
-      text-align: center
-    .list-btn 
+    .title-p
+      color: #c5c5c5
+      font-size: 14px
+      margin-bottom: -1px
+      margin-left: 12px
+    input
+      background-color: #252525
+      border: none
+      padding: 5px 15px
       font-size: 16px
-      display: block
+      border-radius: 20px
+      color: #f5f5f5
       width: 100%
+    .habit-add-close
       position: absolute
-      bottom: 0
-      background-color: #ed3d39
+      top: 5px
+      right: 5px
+      background-color: #00000000
+      padding: 5px
+      ion-icon
+        font-size: 20px
+        color: #c5c5c5
+    .color-select
+      background-color: #252525
+      border: none
+      padding: 5px 15px
+      font-size: 16px
+      border-radius: 20px
+      color: #f5f5f5
+      outline: none
+    .input-btn
+      background-color: #9d07d1
       color: #f5f5f5
       font-weight: 700
-      padding: 5px
-    .tag
-      color: #9afa05
-      background-color: #98fa054d
-      padding: 2px 5px
-      font-size: 12px
-      display: block
-      border-radius: 10px
-    
+      border-radius: 20px
+      padding: 5px 15px
+      font-size: 16px
+      width: 100px
+      margin-top: 10px
+  
 
-@media (max-width: 1000px )
-  .list 
-    grid-template-columns: 1fr 1fr
-    margin-top: 20px
-
-@media (max-width: 700px )
-  .list 
-    display: flex
-    flex-direction: column
-    align-items: center
-    margin: 10px
-    gap: 10px
-  .header
-    bottom: 0
-    top: auto
-    border-top-left-radius: 20px
-    border-top-right-radius: 20px
-    .logo-text
-      display: none
-    .logo
-      margin: 5px 0
-      img
-        width: 40px
-  .add
-    right: auto
-    left: 50%
-    bottom: -10px
-    transform: translate(-50%,-50%)
-    z-index: 3
-  .todo-add 
-    padding: 20px
-    .input
-      padding: 20px
-      width: 300px
+input:focus-visible
+  outline: none

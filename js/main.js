@@ -1,101 +1,318 @@
-const todo = document.querySelector('.todo');
-const btn = document.querySelector('.input-btn');
-const input = document.querySelector('.input-text');
+// Task
+const taskBtn = document.querySelector('#task-btn');
+const taskBlock = document.querySelector('.task');
 const list = document.querySelector('.list');
-const inputTag = document.querySelector('.input-tag');
-const date = document.querySelector('.date');
+const todoInput = document.querySelector('.input');
 
-btn.addEventListener('click', (event) => {
-  const text = input.value;
-  if (text !== '' && inputTag.value !== '') {
-    addTodoList(text, inputTag.value, addDate(date.value));
-    saveTodoList(text, inputTag.value, addDate(date.value));
+const todoAdd = document.querySelector('.todo-add');
+const btnTaskAdd = document.querySelector('.input-task-btn');
 
-    blockAddTask.style.display = 'none';
-    input.value = '';
-    inputTag.value = '';
-  }
-});
+const addBlockTask = document.querySelector('.add-block-task');
+const inputTaskText = document.querySelector('.input-task-text');
+const selectTask = document.querySelector('.dif-select');
+const inputTaskTag = document.querySelector('.input-tag');
+const inputTaskDate = document.querySelector('.date');
 
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'Enter') {
-    if (input.value !== '' && inputTag.value !== '') {
-      addTodoList(input.value, inputTag.value);
-      saveTodoList(input.value, inputTag.value);
+const todoAddClose = document.querySelector('.todo-add-close');
 
-      blockAddTask.style.display = 'none';
-      input.value = '';
-      inputTag.value = '';
-    }
-  }
-});
+// Habit
+const habitBtn = document.querySelector('#habit-btn');
+const habitBlock = document.querySelector('.habit');
+const habitInput = document.querySelector('.habit-add-input');
+const listHabit = document.querySelector('.list-habit');
 
-const addTodoList = (text, tag, date) => {
-  const todoList =
-    '<li class="todo-list"><h2>' +
-    text +
-    '</h2><div class="tag-date"><p class="tag">' +
-    tag +
-    '</p><p class="dates">' +
-    date +
-    '</p></div><button class="list-btn">Delete</button></li>';
-  list.innerHTML += todoList;
+const addBlockHabit = document.querySelector('.add-block-habit');
+const habitAdd = document.querySelector('.habit-add');
+
+const inputHabitText = document.querySelector('.input-text');
+const selectHabit = document.querySelector('.color-select');
+
+const btnHabitAdd = document.querySelector('.input-btn');
+const habitAddClose = document.querySelector('.habit-add-close');
+
+// add
+const btnAdd = document.querySelector('.add');
+const addBlock = document.querySelector('.add-block');
+
+// stats
+const colorTask = document.querySelector('.color-task');
+const statsTaskPer = document.querySelector('.stats-task-per');
+
+const colorHabit = document.querySelector('.color-habit');
+const statsHabitPer = document.querySelector('.stats-habit-per');
+
+const colorAll = document.querySelector('.color-all');
+const statsAllPer = document.querySelector('.stats-all-per');
+
+const today = new Date();
+
+let statsTask = 0;
+let statsHabit = 0;
+
+const animeBlockAdd = (el, el2) => {
+  el.style.display = 'flex';
+  setTimeout(() => {
+    el.style.opacity = '1';
+    el2.style.transform = 'scale(1)';
+  }, 10);
 };
 
-document.addEventListener('click', (event) => {
-  const todobtn = list.querySelectorAll('.list-btn');
-  const todolist = list.querySelectorAll('.todo-list');
-
-  if (event.target.classList == 'list-btn') {
-    event.target.classList.toggle('del');
-    for (let i = 0; i < todolist.length; i++) {
-      if (todobtn[i].classList.length == 2) {
-        todolist[i].parentNode.removeChild(todolist[i]);
-        for (let j = 0; j < todoLists.add; j++) {
-          if (todoLists[j]) {
-            if (todoLists[j][0] == todolist[i].querySelector('h2').innerHTML) {
-              delete todoLists[j];
-            }
-          }
-        }
-        localStorage.setItem('todoList', JSON.stringify(todoLists));
-      }
-    }
-  }
-});
-
-let todoLists = {
-  add: 0,
+const animeBlockClose = (el, el2) => {
+  el.style.opacity = '0';
+  el2.style.transform = 'scale(0)';
+  setTimeout(() => {
+    el.style.display = 'none';
+  }, 150);
 };
 
-const saveTodoList = (text, tag, date) => {
-  todoLists[todoLists['add']] = [text, tag, date];
-  todoLists['add'] += 1;
-  localStorage.setItem('todoList', JSON.stringify(todoLists));
+const addTaskList = (text, tag, date, color, done) => {
+  const taskList = `<li class="list-task">
+  <div onclick="doneDel()" class="${done}"></div>
+  <div class="difficulty-color ${color}"></div>
+  <h3 class="text-task">${text}</h3>
+  <div class="date-tag">
+    <div class="tag-block">
+      <h4 class="tag-text">${tag}</h4>
+    </div>
+    <h4 class="date-text">${date}</h4>
+  </div>
+  <button onclick="Delete(this)" class="delete">
+    <ion-icon name="trash" class="delete-icon"></ion-icon>
+  </button>
+</li>`;
+  list.innerHTML += taskList;
 };
 
-if (localStorage.getItem('todoList') !== null) {
-  todoLists = JSON.parse(localStorage.getItem('todoList'));
-  for (let i = 0; i < todoLists['add']; i++) {
-    if (todoLists[i]) {
-      addTodoList(todoLists[i][0], todoLists[i][1], todoLists[i][2]);
+const addHabitList = (text, color, day) => {
+  const habitList = `<li class="lists-habits ${day}">
+  <ion-icon onclick="Delete(this)" name="trash" class="delete"></ion-icon>
+  <button onclick="doneHabit()" class="btn-add-habit ${color}">${text}
+  </button>
+</li>`;
+  listHabit.innerHTML += habitList;
+};
+
+const stats = () => {
+  let radius = 440;
+  if (window.innerWidth <= 767) {
+    radius = 188;
+  }
+  let perTask = 0;
+  if (list.children.length - 1 !== 0) {
+    perTask = (statsTask / (list.children.length - 1)) * 100;
+  }
+  colorTask.style.strokeDashoffset = radius - (radius * perTask) / 100;
+  statsTaskPer.innerText = Math.round(perTask) + '%';
+
+  let perHabit = 0;
+  if (listHabit.children.length - 1 !== 0) {
+    perHabit = (statsHabit / (listHabit.children.length - 1)) * 100;
+  }
+  colorHabit.style.strokeDashoffset = radius - (radius * perHabit) / 100;
+  statsHabitPer.innerText = Math.round(perHabit) + '%';
+
+  let perAll = 0;
+  perAll = (perTask + perHabit) / 2;
+  colorAll.style.strokeDashoffset = radius - (radius * perAll) / 100;
+  statsAllPer.innerText = Math.round(perAll) + '%';
+};
+
+const filterTask = (lists) => {
+  let filterList = [];
+
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].children[0].classList == 'add-task-btn')
+      filterList.push(lists[i]);
+  }
+
+  statsTask = 0;
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].children[0].classList.length == 2) {
+      filterList.push(lists[i]);
+      statsTask++;
     }
   }
+
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].children[0].classList == 'done') filterList.push(lists[i]);
+  }
+
+  list.innerHTML = '';
+
+  for (let i = 0; i < filterList.length; i++) {
+    list.innerHTML += filterList[i].outerHTML;
+  }
+  stats();
+};
+
+const filterHabit = (lists) => {
+  let filterList = [];
+
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].children[0].classList == 'add-habit-block')
+      filterList.push(lists[i]);
+  }
+
+  statsHabit = 0;
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].children[1].classList.length == 3) {
+      filterList.push(lists[i]);
+      statsHabit++;
+    }
+  }
+
+  for (let i = 0; i < lists.length; i++) {
+    if (lists[i].children[1].classList.length == 2) filterList.push(lists[i]);
+  }
+
+  listHabit.innerHTML = '';
+
+  for (let i = 0; i < filterList.length; i++) {
+    listHabit.innerHTML += filterList[i].outerHTML;
+  }
+  stats();
+};
+
+const addHabitBlock = () => {
+  animeBlockAdd(habitAdd, habitInput);
+};
+
+const addTaskBlock = () => {
+  animeBlockAdd(todoAdd, todoInput);
+};
+
+const doneDel = () => {
+  event.target.classList.toggle('done-del');
+  saveTaskList();
+  filterTask(list.children);
+};
+
+const doneHabit = () => {
+  event.target.classList.toggle('btn-done-habit');
+  saveHabitList();
+  filterHabit(listHabit.children);
+};
+
+const Delete = (el) => {
+  el.parentNode.remove();
+  saveTaskList();
+  saveHabitList();
+  filterTask(list.children);
+  filterHabit(listHabit.children);
+};
+
+let taskLists = {
+  list: '',
+};
+
+let habitLists = {
+  list: '',
+};
+
+const saveTaskList = () => {
+  taskLists['list'] = list.innerHTML;
+  localStorage.setItem('taskLists', JSON.stringify(taskLists));
+};
+
+const saveHabitList = () => {
+  habitLists['list'] = listHabit.innerHTML;
+  localStorage.setItem('habitLists', JSON.stringify(habitLists));
+};
+
+const date = (date) => {
+  return date.split('-').reverse().join('.');
+};
+
+const doneHabitdate = () => {
+  for (let i = 1; i < listHabit.children.length; i++) {
+    if (today.getDate() != listHabit.children[i].classList[1]) {
+      listHabit.children[i].classList.value = 'lists-habits ' + today.getDate();
+      listHabit.children[i].children[1].classList.remove('btn-done-habit');
+      filterHabit(listHabit.children);
+    }
+  }
+};
+
+if (localStorage.getItem('taskLists') !== null) {
+  taskLists = JSON.parse(localStorage.getItem('taskLists'));
+  list.innerHTML = taskLists['list'];
 }
 
-const addDate = (date) => {
-  const a = date.split('-');
-  return a[2] + '.' + a[1] + ' ' + a[0];
-};
+if (localStorage.getItem('habitLists') !== null) {
+  habitLists = JSON.parse(localStorage.getItem('habitLists'));
+  listHabit.innerHTML = habitLists['list'];
+}
 
-const btnAdd = document.querySelector('.add');
-const blockAddTask = document.querySelector('.todo-add');
-const btnClose = document.querySelector('.close');
+filterHabit(listHabit.children);
+filterTask(list.children);
 
-btnAdd.addEventListener('click', (event) => {
-  blockAddTask.style.display = 'flex';
+habitBtn.addEventListener('click', () => {
+  taskBlock.style.display = 'none';
+  habitBlock.style.display = 'block';
 });
 
-btnClose.addEventListener('click', (event) => {
-  blockAddTask.style.display = 'none';
+taskBtn.addEventListener('click', () => {
+  taskBlock.style.display = 'block';
+  habitBlock.style.display = 'none';
 });
+
+btnAdd.addEventListener('click', () => {
+  animeBlockAdd(addBlock);
+});
+
+addBlockTask.addEventListener('click', () => {
+  addBlock.style.display = 'none';
+  animeBlockAdd(todoAdd, todoInput);
+});
+
+addBlockHabit.addEventListener('click', () => {
+  addBlock.style.display = 'none';
+  animeBlockAdd(habitAdd, habitInput);
+});
+
+todoAddClose.addEventListener('click', () => {
+  animeBlockClose(todoAdd, todoInput);
+});
+
+habitAddClose.addEventListener('click', () => {
+  animeBlockClose(habitAdd, habitInput);
+});
+
+btnTaskAdd.addEventListener('click', () => {
+  if (inputTaskText.value !== '' && inputTaskTag.value !== '') {
+    todoInput.style.transform = 'scale(0)';
+    setTimeout(() => {
+      todoAdd.style.display = 'none';
+    }, 150);
+    addTaskList(
+      inputTaskText.value,
+      inputTaskTag.value,
+      date(inputTaskDate.value),
+      selectTask.value,
+      'done'
+    );
+    saveTaskList();
+    inputTaskText.value = '';
+    inputTaskTag.value = '';
+    inputTaskDate.value = '';
+    selectTask.value = 'hard';
+    stats();
+  }
+});
+
+btnHabitAdd.addEventListener('click', () => {
+  if (inputHabitText.value !== '') {
+    habitAdd.style.opacity = '0';
+    habitInput.style.transform = 'scale(0)';
+    setTimeout(() => {
+      habitAdd.style.display = 'none';
+    }, 150);
+    addHabitList(inputHabitText.value, selectHabit.value, today.getDate());
+    saveHabitList();
+    inputHabitText.value = '';
+    selectHabit.value = 'green';
+    stats();
+  }
+});
+
+doneHabitdate();
