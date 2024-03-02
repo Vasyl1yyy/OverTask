@@ -66,9 +66,25 @@ section
       .color-task
         stroke-dashoffset: calc(188 - (188 * 60) / 100)
 
+.habit 
+  display: none
+  transform: translateX(-100%) 
+  margin-bottom: 80px
+  transition: all 0.2s
+  .list-habit
+    flex-direction: column-reverse
+    li
+      width: 100%
+      button
+        width: 100% !important
+  .add-habit-btn
+    font-size: 100px !important
+
 .task
+  transform: translateX(0%)
   padding: 10px
   margin-bottom: 80px
+  transition: all 0.2s
   .filter
     display: none
   .set-filter
@@ -109,18 +125,6 @@ section
         bottom: 5px
         right: 0
 
-
-.habit 
-  display: none
-  margin-bottom: 80px
-  .list-habit
-    flex-direction: column-reverse
-    li
-      width: 100%
-      button
-        width: 100% !important
-  .add-habit-btn
-    font-size: 100px !important
 
 .add
   right: auto

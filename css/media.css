@@ -79,9 +79,30 @@ section h2 {
   stroke-dashoffset: 75.2;
 }
 
+.habit {
+  display: none;
+  transform: translateX(-100%);
+  margin-bottom: 80px;
+  transition: all 0.2s;
+}
+.habit .list-habit {
+  flex-direction: column-reverse;
+}
+.habit .list-habit li {
+  width: 100%;
+}
+.habit .list-habit li button {
+  width: 100% !important;
+}
+.habit .add-habit-btn {
+  font-size: 100px !important;
+}
+
 .task {
+  transform: translateX(0%);
   padding: 10px;
   margin-bottom: 80px;
+  transition: all 0.2s;
 }
 .task .filter {
   display: none;
@@ -131,23 +152,6 @@ section h2 {
   position: absolute;
   bottom: 5px;
   right: 0;
-}
-
-.habit {
-  display: none;
-  margin-bottom: 80px;
-}
-.habit .list-habit {
-  flex-direction: column-reverse;
-}
-.habit .list-habit li {
-  width: 100%;
-}
-.habit .list-habit li button {
-  width: 100% !important;
-}
-.habit .add-habit-btn {
-  font-size: 100px !important;
 }
 
 .add {

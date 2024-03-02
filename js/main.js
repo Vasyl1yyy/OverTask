@@ -224,11 +224,14 @@ const date = (date) => {
 };
 
 const doneHabitdate = () => {
-  for (let i = 1; i < listHabit.children.length; i++) {
-    if (today.getDate() != listHabit.children[i].classList[1]) {
+  for (let i = 0; i < listHabit.children.length; i++) {
+    if (
+      today.getDate() != listHabit.children[i].classList[1] &&
+      listHabit.children[i].classList.value != 'add-habit'
+    ) {
+      console.log(i);
       listHabit.children[i].classList.value = 'lists-habits ' + today.getDate();
       listHabit.children[i].children[1].classList.remove('btn-done-habit');
-      filterHabit(listHabit.children);
     }
   }
 };
@@ -243,17 +246,26 @@ if (localStorage.getItem('habitLists') !== null) {
   listHabit.innerHTML = habitLists['list'];
 }
 
+doneHabitdate();
 filterHabit(listHabit.children);
 filterTask(list.children);
+
+taskBtn.addEventListener('click', () => {
+  habitBlock.style.display = 'none';
+  taskBlock.style.display = 'block';
+  habitBlock.style.transform = 'translateX(-100%)';
+  setInterval(() => {
+    taskBlock.style.transform = 'translateX(0%)';
+  }, 10);
+});
 
 habitBtn.addEventListener('click', () => {
   taskBlock.style.display = 'none';
   habitBlock.style.display = 'block';
-});
-
-taskBtn.addEventListener('click', () => {
-  taskBlock.style.display = 'block';
-  habitBlock.style.display = 'none';
+  taskBlock.style.transform = 'translateX(100%)';
+  setTimeout(() => {
+    habitBlock.style.transform = 'translateX(0%)';
+  }, 10);
 });
 
 btnAdd.addEventListener('click', () => {
@@ -307,12 +319,10 @@ btnHabitAdd.addEventListener('click', () => {
     setTimeout(() => {
       habitAdd.style.display = 'none';
     }, 150);
-    addHabitList(inputHabitText.value, selectHabit.value, today.getDate());
+    addHabitList(inputHabitText.value, selectHabit.value, 1);
     saveHabitList();
     inputHabitText.value = '';
     selectHabit.value = 'green';
     stats();
   }
 });
-
-doneHabitdate();
