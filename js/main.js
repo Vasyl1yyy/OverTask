@@ -319,7 +319,7 @@ btnHabitAdd.addEventListener('click', () => {
     setTimeout(() => {
       habitAdd.style.display = 'none';
     }, 150);
-    addHabitList(inputHabitText.value, selectHabit.value, 1);
+    addHabitList(inputHabitText.value, selectHabit.value, today.getDate());
     saveHabitList();
     inputHabitText.value = '';
     selectHabit.value = 'green';
