@@ -79,6 +79,10 @@ section h2 {
   stroke-dashoffset: 75.2;
 }
 
+main {
+  overflow: hidden;
+}
+
 .habit {
   display: none;
   transform: translateX(-100%);
@@ -99,6 +103,7 @@ section h2 {
 }
 
 .task {
+  display: block;
   transform: translateX(0%);
   padding: 10px;
   margin-bottom: 80px;

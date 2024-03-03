@@ -253,19 +253,19 @@ filterTask(list.children);
 taskBtn.addEventListener('click', () => {
   habitBlock.style.display = 'none';
   taskBlock.style.display = 'block';
-  // habitBlock.style.transform = 'translateX(-100%)';
-  // setInterval(() => {
-  //   taskBlock.style.transform = 'translateX(0%)';
-  // }, 10);
+  habitBlock.style.transform = 'translateX(-100%)';
+  setTimeout(() => {
+    taskBlock.style.transform = 'translateX(0%)';
+  }, 10);
 });
 
 habitBtn.addEventListener('click', () => {
   taskBlock.style.display = 'none';
   habitBlock.style.display = 'block';
-  // taskBlock.style.transform = 'translateX(100%)';
-  // setTimeout(() => {
-  //   habitBlock.style.transform = 'translateX(0%)';
-  // }, 10);
+  taskBlock.style.transform = 'translateX(100%)';
+  setTimeout(() => {
+    habitBlock.style.transform = 'translateX(0%)';
+  }, 10);
 });
 
 btnAdd.addEventListener('click', () => {
